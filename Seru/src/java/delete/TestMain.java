@@ -5,28 +5,17 @@
  */
 package delete;
 
-import java.util.HashSet;
-import java.util.Set;
-import manager.DatabaseManager;
+import java.security.NoSuchAlgorithmException;
+import manager.ProjectManager;
+import manager.TaskManager;
+import manager.SecurityManager;
+import manager.UserManager;
 import model.Project;
-import model.Task;
-import model.User;
-
 /**
  *
  * @author Seruji
  */
 public class TestMain {
-    public static void main(String[] args) {
-        User user = new User("A", "A");
-        Project p = new Project("PRJ NAME", "PRJ DESC", user);
-        Task task = new Task("PRUEBA TASK", "PRUEBA TASK DESC", p);
-        Set<Project> projects = new HashSet<>();
-        Set<Task> tasks = new HashSet<>();
-        tasks.add(task);
-        p.setTasks(tasks);
-        projects.add(p);
-        user.setProjects(projects);
-        DatabaseManager.getInstance().storeUser(user);
+    public static void main(String[] args) throws NoSuchAlgorithmException {
     }
 }

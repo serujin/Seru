@@ -2,6 +2,7 @@ package model;
 
 import constants.Constants;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,10 +39,11 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(String name, String desc, User user) {
+    public Project(User user, String name, String desc) {
         this.name = name;
         this.desc = desc;
         this.user = user;
+        this.tasks = new HashSet<>();
     }
 
     public int getId() {

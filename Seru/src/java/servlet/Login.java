@@ -5,12 +5,15 @@
  */
 package servlet;
 
+import constants.Constants;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import manager.UserManager;
 
 /**
  *
@@ -20,6 +23,16 @@ import javax.servlet.http.HttpServletResponse;
 public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+        try {
+            String username = req.getParameter(Constants.FORM_USERNAME_NAME);
+            String password = req.getParameter(Constants.FORM_PASSWORD_NAME);
+            if(UserManager.getInstance().login(username, password)) {
+                resp.sendRedirect("user_projects.jsp");
+            } else {
+                resp.sendRedirect("login.jsp");
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

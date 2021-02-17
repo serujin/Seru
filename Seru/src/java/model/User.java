@@ -2,6 +2,7 @@ package model;
 
 import constants.Constants;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,6 +37,7 @@ public class User implements Serializable {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
+        this.projects = new HashSet<>();
     }
 
     public int getId() {

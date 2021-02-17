@@ -2,7 +2,8 @@ package model;
 
 import constants.Constants;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -27,8 +30,9 @@ public class Task implements Serializable {
     private String name;
     @Column(name=Constants.TASKS_DESC_ATTRIBUTE)
     private String desc;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name=Constants.TASKS_CREATED_ATTRIBUTE, nullable = false, updatable=false)
-    private LocalDateTime creation;
+    private Date creation;
     @Column(name=Constants.TASKS_STATE_ATTRIBUTE)
     private int state;
     @ManyToOne
@@ -38,12 +42,12 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(String name, String desc, Project project) {
+    public Task(Project project, String name, String desc) {
+        this.project = project;
         this.name = name;
         this.desc = desc;
-        this.creation = LocalDateTime.now();
+        this.creation = Date.from(Instant.now());
         this.state = Constants.TASK_CREATED_STATE;
-        this.project = project;
     }
 
     public int getId() {
@@ -70,11 +74,11 @@ public class Task implements Serializable {
         this.desc = desc;
     }
 
-    public LocalDateTime getCreation() {
+    public Date getCreation() {
         return creation;
     }
 
-    public void setCreation(LocalDateTime creation) {
+    public void setCreation(Date creation) {
         this.creation = creation;
     }
 

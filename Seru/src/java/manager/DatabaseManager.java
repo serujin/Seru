@@ -3,10 +3,13 @@ package manager;
 import constants.Constants;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import model.Project;
 import model.Task;
 import model.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,7 +36,6 @@ public class DatabaseManager {
     }
     
     private DatabaseManager() {
-        this.currentSessionTime = LocalTime.now();
         this.sessionFactory = initFactory();
     }
     
@@ -67,6 +69,20 @@ public class DatabaseManager {
         deleteObject(task);
     }
     
+    public List<Object> getObjects(String query) {
+        checkSessionTime();
+        return this.currentSession.createQuery(query).list();
+    }
+    
+    public List<Object> getObjects(String query, Map<String, Object> params) {
+        checkSessionTime();
+        Query q = this.currentSession.createQuery(query);
+        params.keySet().forEach((key) -> {
+            q.setParameter(key, params.get(key));
+        });
+        return q.list();
+    }
+    
     private void storeObject(Object obj) {
         Transaction transaction = this.currentSession.beginTransaction();
         this.currentSession.save(obj);
@@ -80,6 +96,10 @@ public class DatabaseManager {
     }
     
     private void checkSessionTime() {
+        if(this.currentSession == null) {
+            createSession();
+            return;
+        }
         if(hasToCreateSession()) {
             this.currentSession.close();
             createSession();
@@ -91,12 +111,19 @@ public class DatabaseManager {
     }
     
     private void createSession() {
+        updateCurrentSessionTime();
         this.currentSession = this.sessionFactory.openSession();
+    }
+    
+    private void updateCurrentSessionTime() {
+        this.currentSessionTime = LocalTime.now();
     }
     
     private SessionFactory initFactory() {
         Configuration cfg = new Configuration();
-        cfg.configure(Constants.HIBERNATE_CONFIG_PATH);
+        //TODO: CHANGE THIS
+        //cfg.configure(Constants.HIBERNATE_CONFIG_PATH);
+        cfg.configure();
         Properties props = cfg.getProperties();
         ServiceRegistry sr = new ServiceRegistryBuilder()
                 .applySettings(props)
