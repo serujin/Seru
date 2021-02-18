@@ -92,9 +92,9 @@ public class Constants {
     public static final int PROJECT_NAME_PH = 7;
     public static final int PROJECT_DESC_PH = 8;
     public static final int CREATE_PROJECT_BTN = 9;
-    public static final int CREATE_PROJECT_POPUP_BTN = 10;
-    public static final int LOAD_PROJECT_BTN = 11;
-    public static final int CREATE_TASK_BTN = 12;
+    public static final int CREATE_BTN_VALUE = 10;
+    public static final int LOAD_PROJECT_BTN_VALUE = 11;
+    public static final int CREATE_TASK_BTN_VALUE = 12;
     public static final int TASK_NAME_PH = 13;
     public static final int TASK_DESC_PH = 14;
 }

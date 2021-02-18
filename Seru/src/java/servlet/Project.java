@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import manager.ProjectManager;
+import manager.TaskManager;
 
 /**
  *
@@ -17,7 +18,17 @@ import manager.ProjectManager;
 public class Project extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProjectManager.getInstance().loadProject(Integer.parseInt(req.getParameter(Constants.FORM_PROJECT_ID)));
+        resp.sendRedirect("project.jsp");
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String taskName = req.getParameter(Constants.FORM_TASK_NAME);
+        String taskDesc = req.getParameter(Constants.FORM_TASK_DESC);
+        TaskManager.getInstance().createTask(taskName, taskDesc);
+        resp.sendRedirect("project.jsp");
+    }
+    
 }

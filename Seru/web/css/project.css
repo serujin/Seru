@@ -1,1 +1,29 @@
-.created_tasks_div, .started_tasks_div, 
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    height: 95vh;
+    width: 90vw;
+}
+
+.created_tasks_div {
+    width: 33.33%;
+    height: 100%;
+    background-color: red;
+}
+
+.started_tasks_div {
+    width: 33.33%;
+    height: 100%;
+    background-color: blue;
+}
+
+.completed_tasks_div {
+    width: 33.33%;
+    height: 100%;
+    background-color: green;
+}

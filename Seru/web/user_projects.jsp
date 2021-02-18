@@ -15,15 +15,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Projects</title>
-        <link rel="stylesheet" href="css/user_projects.css">
+        <link rel="stylesheet" href="css/pop_up.css">
     </head>
     <body>
         <%
             String projectNamePlaceholder = TranslationManager.getInstance().getLanguage()[Constants.PROJECT_NAME_PH];
             String projectDescPlaceholder = TranslationManager.getInstance().getLanguage()[Constants.PROJECT_DESC_PH];
             String showCreateProjectButtonValue = TranslationManager.getInstance().getLanguage()[Constants.CREATE_PROJECT_BTN];
-            String createProjectButtonValue = TranslationManager.getInstance().getLanguage()[Constants.CREATE_PROJECT_POPUP_BTN];
-            String loadProjectButtonValue = TranslationManager.getInstance().getLanguage()[Constants.LOAD_PROJECT_BTN];
+            String createProjectButtonValue = TranslationManager.getInstance().getLanguage()[Constants.CREATE_BTN_VALUE];
+            String loadProjectButtonValue = TranslationManager.getInstance().getLanguage()[Constants.LOAD_PROJECT_BTN_VALUE];
         %>
         <button id="show_pop-up"><%=showCreateProjectButtonValue%></button>
         <div id="pop-up">
@@ -42,7 +42,7 @@
             <div>
                 <h1><%=p.getName()%></h1>
                 <p><%=p.getDesc()%></p>
-                <form action="${pageContext.request.contextPath}/Project" method="get">
+                <form action="${pageContext.request.contextPath}/Project" method="post">
                     <input type="number" name=<%=Constants.FORM_PROJECT_ID%> value="<%=p.getId()%>" style="display:none;">
                     <input type="submit" value="<%=loadProjectButtonValue%>">
                 </form>
