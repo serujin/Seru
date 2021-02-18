@@ -3,6 +3,7 @@
     Created on : 16-feb-2021, 15:44:17
     Author     : Seruji
 --%>
+<%@page import="manager.TaskManager"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="manager.ProjectManager"%>
 <%@page import="model.Task"%>
@@ -19,14 +20,32 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/project.css">
         <link rel="stylesheet" href="css/pop_up.css">
+        <link rel="stylesheet" href="css/change_language.css">
     </head>
     <body>
         <%
-            String taskNamePlaceholder = TranslationManager.getInstance().getLanguage()[Constants.TASK_NAME_PH];
-            String taskDescPlaceholder = TranslationManager.getInstance().getLanguage()[Constants.TASK_DESC_PH];
-            String showCreateTaskButtonValue = TranslationManager.getInstance().getLanguage()[Constants.CREATE_TASK_BTN_VALUE];
-            String createTaskButtonValue = TranslationManager.getInstance().getLanguage()[Constants.CREATE_BTN_VALUE];
+            String taskNamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.TASK_NAME_PH);
+            String taskDescPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.TASK_DESC_PH);
+            String showCreateTaskButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.CREATE_TASK_BTN_VALUE);
+            String createTaskButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.CREATE_BTN_VALUE);
+            String deleteTaskButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.DELETE_BTN_VALUE);
         %>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <form class="dropdown-content" action="${pageContext.request.contextPath}/Translator" method="post">
+                <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.PROJECT_JSP_PATH%>" style="display:none">
+                <%
+                    String[] languages =  TranslationManager.getInstance().getAvaliableLanguages(); 
+
+                    String language = "";
+                    for(int i = 0; i < languages.length; i++) {
+                        language = languages[i];
+                %> 
+                       <input type="submit" name=<%=i%> value="<%=language%>">
+                    <%}
+                %>
+            </form>
+        </div>
         <button id="show_pop-up"><%=showCreateTaskButtonValue%></button>
         <div id="pop-up">
             <div class="pop-up_content">
@@ -38,13 +57,25 @@
                 </form>
             </div>
         </div>
+        <div id="task_pop-up">
+            <div class="task_pop-up_content">
+                <span class="task_close">&times;</span>
+                <form action="${pageContext.request.contextPath}/Task" method="post">
+                    <input id="task_pop-up_id" type="text" name=<%=Constants.FORM_TASK_ID%> style="display:none;">
+                    <input id="task_pop-up_name" type="text" name=<%=Constants.FORM_TASK_NAME%> readonly>
+                    <input id="task_pop-up_desc" type="text" name=<%=Constants.FORM_TASK_DESC%> readonly>
+                    <input id="task_pop-up_state" type="text" name=<%=Constants.FORM_TASK_STATE%> style="display:none;">
+                    <input id="task_pop-up_submit" type="submit" name=<%=Constants.FORM_SUBMIT_CHANGE%>>
+                    <input type="submit" name=<%=Constants.FORM_SUBMIT_DELETE%> value="<%=deleteTaskButtonValue%>">
+                </form>
+            </div>
+        </div>
         <%
             Set<Task> tasks = ProjectManager.getInstance().getCurrentProject().getTasks();
             Set<Task> nonStarted = new HashSet<Task>();
             Set<Task> started = new HashSet<Task>();
             Set<Task> completed = new HashSet<Task>();
             for (Task t : tasks) {
-                System.out.println(t.getState());
                 if (t.getState() == Constants.TASK_CREATED_STATE) {
                     nonStarted.add(t);
                 }
@@ -57,45 +88,77 @@
             }
         %>
         <main>
-            <div ondrop="drop(event)" ondragover="allowDrop(event)" class="created_tasks_div">
+            <div class="created_tasks_div">
                 <%
-                    for (Task t : nonStarted) {%>
-                    <h5 id="<%=t.getId()%>" draggable="true" ondragstart="drag(event)"><%=t.getName()%></h5>
+                    int id = 0;
+                    String name = "";
+                    String desc = "";
+                    int state = Constants.TASK_CREATED_STATE;
+                    String btnText = TranslationManager.getInstance().getTranslatedString(Constants.STARTED_TASK_BTN_VALUE);
+                    for (Task t : nonStarted) {
+                        id = t.getId();
+                        name = t.getName();
+                        desc = t.getDesc();
+                %>
+                    
+                    <button onclick="openPopUp('<%=id%>','<%=name%>','<%=desc%>','<%=state%>','<%=btnText%>')">
+                        <%=t.getName()%>
+                    </button>
                 <%}
                 %>
             </div>
-            <div ondrop="drop(event)" ondragover="allowDrop(event)" class="started_tasks_div">
+            <div class="started_tasks_div">
                 <%
-                    for (Task t : started) {%>
-    
-                    <h5 id="<%=t.getId()%>" draggable="true" ondragstart="drag(event)"><%=t.getName()%></h5>
-
+                    state = Constants.TASK_STARTED_STATE;
+                    btnText = TranslationManager.getInstance().getTranslatedString(Constants.COMPLETED_TASK_BTN_VALUE);
+                    for (Task t : started) {
+                        id = t.getId();
+                        name = t.getName();
+                        desc = t.getDesc();
+                %>
+                    
+                    <button onclick="openPopUp('<%=id%>','<%=name%>','<%=desc%>','<%=state%>','<%=btnText%>')">
+                        <%=t.getName()%>
+                    </button>
                 <%}
                 %>
             </div>
-            <div ondrop="drop(event)" ondragover="allowDrop(event)" class="completed_tasks_div">
+            <div class="completed_tasks_div">
                 <%
                     for (Task t : completed) {%>
-
-                    <h5 id="<%=t.getId()%>" draggable="true" ondragstart="drag(event)"><%=t.getName()%></h5>
-
+                    <button><%=t.getName()%></button>
                 <%}
                 %>
             </div>
         </main>
         <script src="js/pop_up.js"></script>
         <script>
-                    function allowDrop(ev) {
-                        ev.preventDefault();
+                const popUpTask = document.getElementById("task_pop-up");
+                const popUpID = document.getElementById("task_pop-up_id");
+                const popUpName = document.getElementById("task_pop-up_name");
+                const popUpDesc = document.getElementById("task_pop-up_desc");
+                const popUpState = document.getElementById("task_pop-up_state");
+                const popUpSubmit = document.getElementById("task_pop-up_submit")
+                const spanTask = document.getElementsByClassName("task_close")[0];
+
+                spanTask.onclick = function () {
+                    popUpTask.style.display = "none";
+                }
+
+                window.onclick = function (event) {
+                    if (event.target == popUp) {
+                        popUpTask.style.display = "none";
                     }
-                    function drag(ev) {
-                        ev.dataTransfer.setData("text", ev.target.id);
-                    }
-                    function drop(ev) {
-                        ev.preventDefault();
-                        var data = ev.dataTransfer.getData("text");
-                        ev.target.appendChild(document.getElementById(data));
-                    }
+                }
+                
+                function openPopUp(id,name,desc,state,text) {
+                    popUpID.setAttribute("value", id);
+                    popUpName.setAttribute("value", name);
+                    popUpDesc.setAttribute("value", desc);
+                    popUpState.setAttribute("value", state);
+                    popUpSubmit.setAttribute("value", text);
+                    popUpTask.style.display = "block";
+                }
         </script>
     </body>
 </html>

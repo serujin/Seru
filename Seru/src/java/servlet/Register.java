@@ -25,12 +25,18 @@ public class Register extends HttpServlet {
         String confirmPassword = req.getParameter(Constants.FORM_CONFIRM_PASSWORD_NAME);
         if(password.equals(confirmPassword)) {
             try {
-                UserManager.getInstance().register(username, password);
+                if(UserManager.getInstance().register(username, password)) {
+                    resp.sendRedirect(Constants.LOGIN_JSP_PATH); 
+                } else {
+                    System.out.println(TranslationManager.getInstance().getTranslatedString(Constants.INVALID_USERNAME_ALERT));
+                    resp.sendRedirect(Constants.REGISTER_JSP_PATH); 
+                }
             } catch (NoSuchAlgorithmException ex) {
                 System.out.println(ex.getMessage());
             }
         } else {
-            System.out.println(TranslationManager.getInstance().getLanguage()[Constants.NOT_EQUAL_PASSWORD_ALERT]);
+            System.out.println(TranslationManager.getInstance().getTranslatedString(Constants.NOT_EQUAL_PASSWORD_ALERT));
+            resp.sendRedirect(Constants.LOGIN_JSP_PATH);
         }
     }
     

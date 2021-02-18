@@ -26,7 +26,15 @@ public class TranslationManager {
         this.currentLanguage = Constants.LANGUAGES[language];
     }
     
-    public String[] getLanguage() {
-        return this.currentLanguage;
+    public String getTranslatedString(int id) {
+        return this.currentLanguage[id];
+    }
+    
+    public String[] getAvaliableLanguages() {
+        String[] languages = new String[Constants.LANGUAGES.length];
+        for(int i = 0; i < languages.length; i++) {
+            languages[i] = Constants.LANGUAGES[i][Constants.LANGUAGE_VALUE];
+        }
+        return languages;
     }
 }

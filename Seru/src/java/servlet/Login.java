@@ -27,9 +27,9 @@ public class Login extends HttpServlet {
             String username = req.getParameter(Constants.FORM_USERNAME_NAME);
             String password = req.getParameter(Constants.FORM_PASSWORD_NAME);
             if(UserManager.getInstance().login(username, password)) {
-                resp.sendRedirect("user_projects.jsp");
+                resp.sendRedirect(Constants.USER_PROJECTS_JSP_PATH);
             } else {
-                resp.sendRedirect("login.jsp");
+                resp.sendRedirect(Constants.LOGIN_JSP_PATH);
             }
         } catch (NoSuchAlgorithmException ex) {
             System.out.println(ex.getMessage());

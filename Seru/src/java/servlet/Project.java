@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import manager.ProjectManager;
 import manager.TaskManager;
+import manager.TranslationManager;
 
 /**
  *
@@ -19,8 +20,20 @@ public class Project extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProjectManager.getInstance().loadProject(Integer.parseInt(req.getParameter(Constants.FORM_PROJECT_ID)));
-        resp.sendRedirect("project.jsp");
+        int id = Integer.parseInt(req.getParameter(Constants.FORM_PROJECT_ID));
+        String type = req.getParameter(Constants.FORM_SUBMIT_CHANGE);
+        ProjectManager.getInstance().loadProject(id);
+        if(type != null) {
+            resp.sendRedirect(Constants.PROJECT_JSP_PATH);
+        } else {
+            System.out.println(TranslationManager.getInstance().getTranslatedString(
+                    Constants.SUCCESSFULLY_DELETE_PROJECT) + 
+                    ProjectManager.getInstance().getCurrentProject().getName()
+            );
+            ProjectManager.getInstance().deleteProject();
+            resp.sendRedirect(Constants.USER_PROJECTS_JSP_PATH);
+        }
+
     }
 
     @Override
@@ -28,7 +41,7 @@ public class Project extends HttpServlet {
         String taskName = req.getParameter(Constants.FORM_TASK_NAME);
         String taskDesc = req.getParameter(Constants.FORM_TASK_DESC);
         TaskManager.getInstance().createTask(taskName, taskDesc);
-        resp.sendRedirect("project.jsp");
+        resp.sendRedirect(Constants.PROJECT_JSP_PATH);
     }
     
 }

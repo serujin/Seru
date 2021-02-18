@@ -24,6 +24,14 @@ public class TaskManager {
         
     }
     
+    public void setCurrentTask(int id) {
+        for(Task t : ProjectManager.getInstance().getCurrentProject().getTasks()) {
+            if(t.getId() == id) {
+                this.currentTask = t;
+            }
+        }
+    }
+    
     public void createTask(String name, String desc) {
         Project currentProject = ProjectManager.getInstance().getCurrentProject();
         this.currentTask = new Task(currentProject, name, desc);
@@ -32,11 +40,17 @@ public class TaskManager {
     }
     
     public void deleteTask() {
+        Project currentProject = ProjectManager.getInstance().getCurrentProject();
+        currentProject.getTasks().remove(this.currentTask);
         DatabaseManager.getInstance().deleteTask(this.currentTask);
     }
     
     public void changeTaskState(int state) {
-        this.currentTask.setState(state);
+        this.currentTask.setState(state + 1);
         DatabaseManager.getInstance().storeTask(this.currentTask);
+    }
+
+    public Task getCurrentTask() {
+        return this.currentTask;
     }
 }

@@ -43,9 +43,14 @@ public class Constants {
     public static final String FORM_PROJECT_NAME = "project_name";
     public static final String FORM_PROJECT_DESC = "project_desc";
     public static final String FORM_PROJECT_ID = "project_id";
+    public static final String FORM_TASK_ID = "task_id";
     public static final String FORM_TASK_NAME = "task_name";
     public static final String FORM_TASK_DESC = "task_desc";
-    public static final String FORM_TASK_ID = "task_id";
+    public static final String FORM_TASK_STATE = "task_state";
+    public static final String FORM_SUBMIT_DELETE = "submit_delete";
+    public static final String FORM_SUBMIT_CHANGE = "submit_change";
+    public static final String FORM_SUBMIT_LANGUAGE = "language_";
+    public static final String FORM_CURRENT_PAGE_VALUE = "current_page";
     // <editor-fold defaultstate="collapsed" desc="Language translations">
     public static final String[] EN = {
         "Insert your username",
@@ -62,7 +67,14 @@ public class Constants {
         "Load project",
         "Create new task",
         "Insert the task's name",
-        "Insert the task's desc"
+        "Insert the task's desc",
+        "Set as started",
+        "Set as completed",
+        "Delete",
+        "English",
+        "Invalid username, please try again with other username",
+        "Successfully eliminated project ",
+        "Successfully eliminated task "
     };
     public static final String[] ES = {
         "Introduce tu nombre",
@@ -71,7 +83,22 @@ public class Constants {
         "Registrarse",
         "Confirma tu contraseña",
         "Volver al login",
-        "Las contraseñas deben coincidir"
+        "Las contraseñas deben coincidir",
+        "Introduce el nombre del proyecto",
+        "Introduce la descripción del proyecto",
+        "Crear un nuevo proyecto",
+        "Crear",
+        "Cargar proyecto",
+        "Crear una nueva tarea",
+        "Introduce el nombre de la tarea",
+        "Introduce la descripción de la tarea",
+        "Marcar como empezado",
+        "Marcar como completado",
+        "Eliminar",
+        "Español",
+        "Usuario no válido, por favor inténtalo de nuevo cambiando el usuario",
+        "Proyecto eliminado correctamente ",
+        "Tarea eliminada correctamente "
     };
     // </editor-fold>
     public static final String[][] LANGUAGES = {
@@ -81,6 +108,11 @@ public class Constants {
     
     public static final int ENGLISH_LANGUAGE = 0;
     public static final int SPANISH_LANGUAGE = 1;
+    
+    public static final String LOGIN_JSP_PATH = "login.jsp";
+    public static final String PROJECT_JSP_PATH = "project.jsp";
+    public static final String REGISTER_JSP_PATH = "register.jsp";
+    public static final String USER_PROJECTS_JSP_PATH = "user_projects.jsp";
     
     public static final int USERNAME_PH = 0;
     public static final int PASSWORD_PH = 1;
@@ -97,4 +129,11 @@ public class Constants {
     public static final int CREATE_TASK_BTN_VALUE = 12;
     public static final int TASK_NAME_PH = 13;
     public static final int TASK_DESC_PH = 14;
+    public static final int STARTED_TASK_BTN_VALUE = 15;
+    public static final int COMPLETED_TASK_BTN_VALUE = 16;
+    public static final int DELETE_BTN_VALUE = 17;
+    public static final int LANGUAGE_VALUE = 18;
+    public static final int INVALID_USERNAME_ALERT = 19;
+    public static final int SUCCESSFULLY_DELETE_PROJECT = 20;
+    public static final int SUCCESSFULLY_DELETE_TASK = 21;
 }

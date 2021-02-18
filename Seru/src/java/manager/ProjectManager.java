@@ -42,6 +42,7 @@ public class ProjectManager {
     }
     
     public void deleteProject() {
+        UserManager.getInstance().getLoggedUser().getProjects().remove(this.currentProject);
         DatabaseManager.getInstance().deleteProject(this.currentProject);
     }
     
