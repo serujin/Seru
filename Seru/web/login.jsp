@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="css/change_language.css">
+        <link rel="stylesheet" href="css/general1.css">
     </head>
     <body>
         <%
@@ -20,28 +20,41 @@
             String passwordPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PASSWORD_PH);
             String loginButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.LOGIN_BTN_VALUE);
             String registerButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.REGISTER_BTN_VALUE);
+            String currentLanguage = TranslationManager.getInstance().getTranslatedString(Constants.LANGUAGE_VALUE);
         %>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <form class="dropdown-content" action="${pageContext.request.contextPath}/Translator" method="post">
-                <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.LOGIN_JSP_PATH%>" style="display:none">
-                <%
-                    String[] languages =  TranslationManager.getInstance().getAvaliableLanguages(); 
+        <header class="row_container col-12 row-1-vh center_h space_content color-2">
+            <img class="col-1" src="images/Seru_Logo.png">
+            <div class="dropdown col-1 row-1-vh" class="col_container center_wh color-2">
+                <button class="dropbtn col-12 row-12 color-2 header_font"><%=currentLanguage%></button>
+                <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
+                    <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.LOGIN_JSP_PATH%>" style="display:none">
+                    <%
+                        String[] languages = TranslationManager.getInstance().getAvaliableLanguages();
 
-                    String language = "";
-                    for(int i = 0; i < languages.length; i++) {
-                        language = languages[i];
-                %> 
-                       <input type="submit" name=<%=i%> value="<%=language%>">
+                        String language = "";
+                        for (int i = 0; i < languages.length; i++) {
+                            language = languages[i];
+                    %> 
+                    <input class="col-12 color-3" type="submit" name=<%=i%> value="<%=language%>">
                     <%}
-                %>
-            </form>
+                    %>
+                </form>
+            </div>
+        </header>
+        <div class="row_container col-12 row-10-vh center_wh">
+            <div class="col_container col-3 row-7 center_wh color-3 rounded space_content">
+                <img class="col-10" src="images/Login_Logo.png">
+                <form class="col_container col-7 row-8" action="${pageContext.request.contextPath}/Login" method="post">
+                    <div class="col_container col-12 row-6 space_content">
+                        <input class="text_input col-12 row-5" type="text" name=<%=Constants.FORM_USERNAME_NAME%> placeholder="<%=usernamePlaceholder%>" required>
+                        <input class="text_input col-12 row-5" type="password" name=<%=Constants.FORM_PASSWORD_NAME%> placeholder="<%=passwordPlaceholder%>" required>
+                    </div>
+                    <div class="row_container col-12 row-4 center_h space_content">
+                        <button class="submit_input col-4 row-5 center_wh" onClick="location.href = 'register.jsp'"><%=registerButtonValue%></button> 
+                        <input class="submit_input col-4 row-5 center_wh" type="submit" value=<%=loginButtonValue%>>
+                    </div> 
+                </form>
+            </div>
         </div>
-        <form action="${pageContext.request.contextPath}/Login" method="post">
-            <input type="text" name=<%=Constants.FORM_USERNAME_NAME%> placeholder="<%=usernamePlaceholder%>" required>
-            <input type="password" name=<%=Constants.FORM_PASSWORD_NAME%> placeholder="<%=passwordPlaceholder%>" required>
-            <input type="submit" value=<%=loginButtonValue%>>
-        </form>
-        <button onClick="location.href = 'register.jsp'"><%=registerButtonValue%></button>
     </body>
 </html>

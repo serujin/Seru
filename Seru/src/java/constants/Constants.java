@@ -74,7 +74,8 @@ public class Constants {
         "English",
         "Invalid username, please try again with other username",
         "Successfully eliminated project ",
-        "Successfully eliminated task "
+        "Successfully eliminated task ",
+        "Log out"
     };
     public static final String[] ES = {
         "Introduce tu nombre",
@@ -98,7 +99,8 @@ public class Constants {
         "Español",
         "Usuario no válido, por favor inténtalo de nuevo cambiando el usuario",
         "Proyecto eliminado correctamente ",
-        "Tarea eliminada correctamente "
+        "Tarea eliminada correctamente ",
+        "Salir"
     };
     // </editor-fold>
     public static final String[][] LANGUAGES = {
@@ -136,4 +138,5 @@ public class Constants {
     public static final int INVALID_USERNAME_ALERT = 19;
     public static final int SUCCESSFULLY_DELETE_PROJECT = 20;
     public static final int SUCCESSFULLY_DELETE_TASK = 21;
+    public static final int LOG_OUT_BTN_VALUE = 22;
 }

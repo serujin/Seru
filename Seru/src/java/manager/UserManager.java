@@ -31,15 +31,21 @@ public class UserManager {
     public boolean login(String username, String password) throws NoSuchAlgorithmException { 
         Map<String, Object> params = new HashMap<>();
         params.put(Constants.GET_USER_BY_USERNAME_PARAM, SecurityManager.getHashedString(username));
-        this.currentUser = (User) DatabaseManager.getInstance().getObjects(Constants.GET_USER_BY_USERNAME, params).get(0);
+        List<Object> users = DatabaseManager.getInstance().getObjects(Constants.GET_USER_BY_USERNAME, params);
+        if(users.size() == 0) {
+            return false;
+        }
+        this.currentUser = (User) users.get(0);
         return SecurityManager.isACorrectPassword(password);
     }
     
     public boolean register(String username, String password) throws NoSuchAlgorithmException {
+        String hashedUsername = SecurityManager.getHashedString(username);
+        String hashedPassword = SecurityManager.getHashedString(password);
         Map<String, Object> params = new HashMap<>();
-        params.put(Constants.GET_USER_BY_USERNAME_PARAM, SecurityManager.getHashedString(username));
-        if(isAnAvailableRegister(username, password, params)) {
-            this.currentUser = new User(username, password);
+        params.put(Constants.GET_USER_BY_USERNAME_PARAM, hashedUsername);
+        if(isAnAvailableRegister(hashedUsername, hashedPassword, params)) {
+            this.currentUser = new User(hashedUsername, hashedPassword);
             DatabaseManager.getInstance().storeUser(this.currentUser);
             return true;
         } 
@@ -47,7 +53,7 @@ public class UserManager {
     }
     
     private boolean isAnAvailableRegister(String username, String password, Map<String, Object> params) throws NoSuchAlgorithmException {
-        User registering = new User(SecurityManager.getHashedString(username), SecurityManager.getHashedString(password));
+        User registering = new User(username, password);
         List<User> existingUsers = new ArrayList<>();
         List<Object> objects = DatabaseManager.getInstance().getObjects(Constants.GET_USER_BY_USERNAME, params);
         for(Object u : objects) {

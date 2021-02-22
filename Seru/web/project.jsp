@@ -20,7 +20,7 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/project.css">
         <link rel="stylesheet" href="css/pop_up.css">
-        <link rel="stylesheet" href="css/change_language.css">
+        <link rel="stylesheet" href="css/general1.css.css">
     </head>
     <body>
         <%
@@ -29,26 +29,36 @@
             String showCreateTaskButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.CREATE_TASK_BTN_VALUE);
             String createTaskButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.CREATE_BTN_VALUE);
             String deleteTaskButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.DELETE_BTN_VALUE);
+            String currentLanguage = TranslationManager.getInstance().getTranslatedString(Constants.LANGUAGE_VALUE);
+            String logOutButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.LOG_OUT_BTN_VALUE);
         %>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <form class="dropdown-content" action="${pageContext.request.contextPath}/Translator" method="post">
-                <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.PROJECT_JSP_PATH%>" style="display:none">
-                <%
-                    String[] languages =  TranslationManager.getInstance().getAvaliableLanguages(); 
+        <header class="row_container col-12 row-1-vh center_h space_content color-2">
+            <img class="col-1" src="images/Seru_Logo.png">
+            <div class="col-2 row-1-vh">
+                <div class="dropdown col-6 row-12" class="col_container center_wh color-2">
+                    <button class="dropbtn col-12 row-12 color-2 header_font"><%=currentLanguage%></button>
+                    <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
+                        <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.LOGIN_JSP_PATH%>" style="display:none">
+                        <%
+                            String[] languages = TranslationManager.getInstance().getAvaliableLanguages();
 
-                    String language = "";
-                    for(int i = 0; i < languages.length; i++) {
-                        language = languages[i];
-                %> 
-                       <input type="submit" name=<%=i%> value="<%=language%>">
-                    <%}
-                %>
-            </form>
-        </div>
+                            String language = "";
+                            for (int i = 0; i < languages.length; i++) {
+                                language = languages[i];
+                        %> 
+                        <input class="col-12 color-3" type="submit" name=<%=i%> value="<%=language%>">
+                        <%}
+                        %>
+                    </form>
+                </div>
+                <form class="col-6 row-12" action="${pageContext.request.contextPath}/LogOut" method="post">
+                    <input class="col-12 row-12 color-2 header_font" type="submit" value="<%=logOutButtonValue%>">
+                </form>
+            </div>
+        </header>
         <button id="show_pop-up"><%=showCreateTaskButtonValue%></button>
-        <div id="pop-up">
-            <div class="pop-up_content">
+        <div id="pop-up" class="col-12 row-12">
+            <div class="pop-up_content col-10">
                 <span class="close">&times;</span>
                 <form action="${pageContext.request.contextPath}/Project" method="get">
                     <input type="text" name=<%=Constants.FORM_TASK_NAME%> placeholder="<%=taskNamePlaceholder%>" required>
@@ -100,10 +110,10 @@
                         name = t.getName();
                         desc = t.getDesc();
                 %>
-                    
-                    <button onclick="openPopUp('<%=id%>','<%=name%>','<%=desc%>','<%=state%>','<%=btnText%>')">
-                        <%=t.getName()%>
-                    </button>
+
+                <button onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
+                    <%=t.getName()%>
+                </button>
                 <%}
                 %>
             </div>
@@ -116,49 +126,49 @@
                         name = t.getName();
                         desc = t.getDesc();
                 %>
-                    
-                    <button onclick="openPopUp('<%=id%>','<%=name%>','<%=desc%>','<%=state%>','<%=btnText%>')">
-                        <%=t.getName()%>
-                    </button>
+
+                <button onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
+                    <%=t.getName()%>
+                </button>
                 <%}
                 %>
             </div>
             <div class="completed_tasks_div">
                 <%
                     for (Task t : completed) {%>
-                    <button><%=t.getName()%></button>
+                <button><%=t.getName()%></button>
                 <%}
                 %>
             </div>
         </main>
         <script src="js/pop_up.js"></script>
         <script>
-                const popUpTask = document.getElementById("task_pop-up");
-                const popUpID = document.getElementById("task_pop-up_id");
-                const popUpName = document.getElementById("task_pop-up_name");
-                const popUpDesc = document.getElementById("task_pop-up_desc");
-                const popUpState = document.getElementById("task_pop-up_state");
-                const popUpSubmit = document.getElementById("task_pop-up_submit")
-                const spanTask = document.getElementsByClassName("task_close")[0];
+                    const popUpTask = document.getElementById("task_pop-up");
+                    const popUpID = document.getElementById("task_pop-up_id");
+                    const popUpName = document.getElementById("task_pop-up_name");
+                    const popUpDesc = document.getElementById("task_pop-up_desc");
+                    const popUpState = document.getElementById("task_pop-up_state");
+                    const popUpSubmit = document.getElementById("task_pop-up_submit")
+                    const spanTask = document.getElementsByClassName("task_close")[0];
 
-                spanTask.onclick = function () {
-                    popUpTask.style.display = "none";
-                }
-
-                window.onclick = function (event) {
-                    if (event.target == popUp) {
+                    spanTask.onclick = function () {
                         popUpTask.style.display = "none";
                     }
-                }
-                
-                function openPopUp(id,name,desc,state,text) {
-                    popUpID.setAttribute("value", id);
-                    popUpName.setAttribute("value", name);
-                    popUpDesc.setAttribute("value", desc);
-                    popUpState.setAttribute("value", state);
-                    popUpSubmit.setAttribute("value", text);
-                    popUpTask.style.display = "block";
-                }
+
+                    window.onclick = function (event) {
+                        if (event.target == popUp) {
+                            popUpTask.style.display = "none";
+                        }
+                    }
+
+                    function openPopUp(id, name, desc, state, text) {
+                        popUpID.setAttribute("value", id);
+                        popUpName.setAttribute("value", name);
+                        popUpDesc.setAttribute("value", desc);
+                        popUpState.setAttribute("value", state);
+                        popUpSubmit.setAttribute("value", text);
+                        popUpTask.style.display = "block";
+                    }
         </script>
     </body>
 </html>

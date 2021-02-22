@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Rubik:wght@300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+.row_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.col_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.row_container>* {
+    display: flex;
+}
+
+.col_container>* {
+    display: flex;
+}
+
+.center_w {
+    justify-content: center;
+}
+
+.center_h {
+    align-items: center;
+}
+
+.center_wh {
+    justify-content: center;
+    align-items: center;
+}
+
+.space_content {
+    justify-content: space-between;
+}
+
+.text_input {
+    animation-name: text_input;
+    animation-fill-mode: forwards;
+    animation-duration: 0.3s;
+    padding: 0 0.8vw;
+    border: none;
+    font-family: 'Rubik', sans-serif;
+    font-size: calc(0.3em + 0.7vw);
+}
+
+.text_input:focus {
+    animation-name: text_input_focus;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+}
+
+.submit_input {
+    background-color: rgb(182, 234, 181);
+    border: none;
+    font-family: 'Rubik', sans-serif;
+    font-size: calc(0.2em + 0.6vw);
+    border-radius: 2vw;
+    color: rgb(74, 74, 74);
+}
+
+.rounded {
+    border-radius: 2vw;
+}
+
+@keyframes text_input {
+    from {
+        background-color: rgb(231, 248, 230);
+        border-radius: 0.3vw;
+    }
+    to {
+        background-color: rgb(182, 234, 181);
+        border-radius: 2vw;
+    }
+}
+
+@keyframes text_input_focus {
+    from {
+        background-color: rgb(182, 234, 181);
+        border-radius: 2vw;
+    }
+    to {
+        background-color: rgb(231, 248, 230);
+        border-radius: 0.3vw;
+    }
+}
+
+.header_font {
+    font-family: 'Reenie Beanie';
+    font-size: calc(1em + 1.5vw);
+    color: white;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown-content input {
+    text-decoration: none;
+    font-family: 'Reenie Beanie';
+    font-size: calc(0.7em + 1.2vw);
+    padding: 0 3vh;
+    border: none;
+    display: block;
+}
+
+.dropdown-content input:hover {
+    background-color: rgb(134, 220, 132);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#pop-up {
+    display: none;
+    position: fixed;
+    padding-top: 100px;
+    /*CHANGE*/
+    left: 0;
+    top: 0;
+}
+
+.pop-up_content {
+    margin: auto;
+}
+
+.close {
+    color: #aaaaaa;
+    text-align: end;
+    font-size: 28px;
+    /*CHANGE*/
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.color-1 {
+    background-color: rgb(61, 199, 59);
+}
+
+.color-2 {
+    background-color: rgb(85, 206, 84);
+}
+
+.color-3 {
+    background-color: rgb(110, 213, 108);
+}
+
+.color-4 {
+    background-color: rgb(134, 220, 132);
+}
+
+.color-5 {
+    background-color: rgb(158, 227, 157);
+}
+
+.color-6 {
+    background-color: rgb(182, 234, 181);
+}
+
+.color-7 {
+    background-color: rgb(207, 241, 206);
+}
+
+.color-8 {
+    background-color: rgb(231, 248, 230);
+}
+
+.col-1-vw {
+    width: 8.33vw;
+}
+
+.col-2-vw {
+    width: 16.66vw;
+}
+
+.col-3-vw {
+    width: 24.99vw;
+}
+
+.col-4-vw {
+    width: 33.32vw;
+}
+
+.col-5-vw {
+    width: 41.65vw;
+}
+
+.col-6-vw {
+    width: 50vw;
+}
+
+.col-7-vw {
+    width: 58.31vw;
+}
+
+.col-8-vw {
+    width: 66.64vw;
+}
+
+.col-9-vw {
+    width: 74.97vw;
+}
+
+.col-10-vw {
+    width: 83.33vw;
+}
+
+.col-11-vw {
+    width: 91.63vw;
+}
+
+.col-12-vw {
+    width: 100vw;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 24.99%;
+}
+
+.col-4 {
+    width: 33.32%;
+}
+
+.col-5 {
+    width: 41.65%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.31%;
+}
+
+.col-8 {
+    width: 66.64%;
+}
+
+.col-9 {
+    width: 74.97%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.63%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.row-1-vh {
+    height: 8.33vh;
+}
+
+.row-2-vh {
+    height: 16.66vh;
+}
+
+.row-3-vh {
+    height: 24.99vh;
+}
+
+.row-4-vh {
+    height: 33.32vh;
+}
+
+.row-5-vh {
+    height: 41.65vh;
+}
+
+.row-6-vh {
+    height: 50vh;
+}
+
+.row-7-vh {
+    height: 58.31vh;
+}
+
+.row-8-vh {
+    height: 66.64vh;
+}
+
+.row-9-vh {
+    height: 74.97vh;
+}
+
+.row-10-vh {
+    height: 83.33vh;
+}
+
+.row-11-vh {
+    height: 91.63vh;
+}
+
+.row-12-vh {
+    height: 100vh;
+}
+
+.row-1 {
+    height: 8.33%;
+}
+
+.row-2 {
+    height: 16.66%;
+}
+
+.row-3 {
+    height: 24.99%;
+}
+
+.row-4 {
+    height: 33.32%;
+}
+
+.row-5 {
+    height: 41.65%;
+}
+
+.row-6 {
+    height: 50%;
+}
+
+.row-7 {
+    height: 58.31%;
+}
+
+.row-8 {
+    height: 66.64%;
+}
+
+.row-9 {
+    height: 74.97%;
+}
+
+.row-10 {
+    height: 83.33%;
+}
+
+.row-11 {
+    height: 91.63%;
+}
+
+.row-12 {
+    height: 100%;
+}

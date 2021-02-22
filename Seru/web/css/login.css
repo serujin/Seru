@@ -1,0 +1,42 @@
+body>div {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body>div>div {
+    width: 20vw;
+    height: 60vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(110, 230, 108);
+    border-radius: 2vw;
+}
+
+body>div * {
+    display: flex;
+}
+
+body>div>div>form {
+    width: 70%;
+    height: 70%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+body>div>div>form>input:first-child,
+body>div>div>form>input:first-child+input {
+    width: 100%;
+}
+
+input {
+    display: flex;
+    margin: 0.3vh 0;
+    padding: 0 2%;
+    height: 10%;
+}
