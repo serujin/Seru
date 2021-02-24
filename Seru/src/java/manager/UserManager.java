@@ -16,6 +16,7 @@ public class UserManager {
     private static UserManager instance;
      
     private User currentUser;
+    private String username;
     
     public static UserManager getInstance() {
         if(UserManager.instance == null) {
@@ -36,6 +37,7 @@ public class UserManager {
             return false;
         }
         this.currentUser = (User) users.get(0);
+        this.username = username;
         return SecurityManager.isACorrectPassword(password);
     }
     
@@ -47,6 +49,7 @@ public class UserManager {
         if(isAnAvailableRegister(hashedUsername, hashedPassword, params)) {
             this.currentUser = new User(hashedUsername, hashedPassword);
             DatabaseManager.getInstance().storeUser(this.currentUser);
+            this.username = username;
             return true;
         } 
         return false;
@@ -69,10 +72,15 @@ public class UserManager {
     }
     
     public void logout() {
+        this.username = null;
         this.currentUser = null;
     }
     
     public User getLoggedUser() {
         return this.currentUser;
+    }
+    
+    public String getLoggedUsername() {
+        return this.username;
     }
 }

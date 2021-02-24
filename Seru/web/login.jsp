@@ -10,9 +10,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;">
         <title>Login</title>
-        <link rel="stylesheet" href="css/general1.css">
+        <link rel="stylesheet" href="css/general.css">
     </head>
     <body>
         <%

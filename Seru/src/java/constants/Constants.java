@@ -75,7 +75,13 @@ public class Constants {
         "Invalid username, please try again with other username",
         "Successfully eliminated project ",
         "Successfully eliminated task ",
-        "Log out"
+        "Log out",
+        "Created tasks",
+        "Started tasks",
+        "Completed tasks",
+        "Back to my projects",
+        "%s's Projects",
+        "%s's Tasks"
     };
     public static final String[] ES = {
         "Introduce tu nombre",
@@ -100,7 +106,13 @@ public class Constants {
         "Usuario no válido, por favor inténtalo de nuevo cambiando el usuario",
         "Proyecto eliminado correctamente ",
         "Tarea eliminada correctamente ",
-        "Salir"
+        "Salir",
+        "Tareas creadas",
+        "Tareas empezadas",
+        "Tareas completadas",
+        "Volver a mis proyectos",
+        "Proyectos de %s",
+        "Tareas de %s"
     };
     // </editor-fold>
     public static final String[][] LANGUAGES = {
@@ -139,4 +151,10 @@ public class Constants {
     public static final int SUCCESSFULLY_DELETE_PROJECT = 20;
     public static final int SUCCESSFULLY_DELETE_TASK = 21;
     public static final int LOG_OUT_BTN_VALUE = 22;
+    public static final int CREATED_TASK_TITLE = 23;
+    public static final int STARTED_TASK_TITLE = 24;
+    public static final int COMPLETED_TASK_TITLE = 25;
+    public static final int BACK_TO_PROJECTS_BTN_VALUE = 26;
+    public static final int PROJECTS_OF_USER_VALUE = 27;
+    public static final int TASKS_OF_PROJECT_VALUE = 28;
 }

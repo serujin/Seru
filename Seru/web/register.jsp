@@ -10,9 +10,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;">
         <title>Register</title>
-        <link rel="stylesheet" href="css/general1.css">
+        <link rel="stylesheet" href="css/general.css">
     </head>
     <body>
         <%
@@ -52,7 +52,7 @@
                         <input class="text_input col-12 row-3" type="password" name=<%=Constants.FORM_CONFIRM_PASSWORD_NAME%> placeholder="<%=confirmPasswordPlaceholder%>" required>
                     </div>
                     <div class="row_container col-12 row-4 center_h space_content">
-                        <button class="submit_input col-5 row-5 center_wh" onClick="location.href = 'login.jsp'"><%=backButtonValue%></button>
+                        <button class="submit_input col-5 row-5 center_wh" onClick="location.href = '<%=Constants.LOGIN_JSP_PATH%>'"><%=backButtonValue%></button>
                         <input class="submit_input col-5 row-5 center_wh" type="submit" value=<%=registerButtonValue%>>
                     </div> 
                 </form>

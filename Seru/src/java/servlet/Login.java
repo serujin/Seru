@@ -23,6 +23,7 @@ import manager.UserManager;
 public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         try {
             String username = req.getParameter(Constants.FORM_USERNAME_NAME);
             String password = req.getParameter(Constants.FORM_PASSWORD_NAME);

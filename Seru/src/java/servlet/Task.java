@@ -18,6 +18,7 @@ import manager.TranslationManager;
 public class Task extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         int taskID = Integer.parseInt(req.getParameter(Constants.FORM_TASK_ID));
         int state = Integer.parseInt(req.getParameter(Constants.FORM_TASK_STATE));
         String type = req.getParameter(Constants.FORM_SUBMIT_CHANGE);
