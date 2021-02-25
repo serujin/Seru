@@ -1,10 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&family=Rubik:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     border: none;
     -ms-overflow-style: none;
+}
+
+body {
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+header {
+    background-color: rgba(169,169,169, 0.5);
+}
+
+header * {
+    background: none;
 }
 
 *::-webkit-scrollbar {
@@ -60,6 +75,25 @@ button:focus {
     justify-content: space-between;
 }
 
+.pop-up_text_input {
+    padding: 0 0.8vw;
+    background-color: rgba(196,196,196, 0.9);
+    color: white;     
+    font-family: 'Rubik', sans-serif;
+    overflow-y: scroll;
+    font-size: calc(0.3em + 0.7vw);
+    border-radius: 2vw;
+}
+
+.pop-up_submit_input {
+    background-color: rgba(196,196,196, 0.9);
+    border: none;
+    font-family: 'Rubik', sans-serif;
+    font-size: calc(0.2em + 0.6vw);
+    border-radius: 2vw;
+    color: white;
+}
+
 .text_input {
     animation-name: text_input;
     animation-fill-mode: forwards;
@@ -69,6 +103,7 @@ button:focus {
     font-family: 'Rubik', sans-serif;
     overflow-y: scroll;
     font-size: calc(0.3em + 0.7vw);
+    color: white;
 }
 
 .text_input:focus {
@@ -78,12 +113,16 @@ button:focus {
 }
 
 .submit_input {
-    background-color: rgb(182, 234, 181);
+    background-color: rgba(120,180,170,0.5);
     border: none;
     font-family: 'Rubik', sans-serif;
     font-size: calc(0.2em + 0.6vw);
     border-radius: 2vw;
-    color: rgb(74, 74, 74);
+    color: white;
+}
+
+.bg_color {
+    background-color: rgba(180, 226, 230, 1);
 }
 
 .rounded {
@@ -92,28 +131,28 @@ button:focus {
 
 @keyframes text_input {
     from {
-        background-color: rgb(231, 248, 230);
+        background-color: rgba(140,220,190,0.5);
         border-radius: 0.3vw;
     }
     to {
-        background-color: rgb(182, 234, 181);
+        background-color: rgba(120,180,170,0.5);
         border-radius: 2vw;
     }
 }
 
 @keyframes text_input_focus {
     from {
-        background-color: rgb(182, 234, 181);
+        background-color: rgba(120,180,170,0.5);
         border-radius: 2vw;
     }
     to {
-        background-color: rgb(231, 248, 230);
+        background-color: rgba(140,220,190,0.5);
         border-radius: 0.3vw;
     }
 }
 
 .header_font {
-    font-family: 'Reenie Beanie';
+    font-family: 'Fira Sans', sans-serif;
     font-size: calc(1em + 1.5vw);
     color: white;
 }
@@ -131,19 +170,21 @@ button:focus {
 .dropdown-content {
     display: none;
     position: absolute;
+    background-color: rgba(169,169,169, 0.5);
 }
 
 .dropdown-content input {
     text-decoration: none;
-    font-family: 'Reenie Beanie';
+    font-family: 'Fira Sans', sans-serif;
     font-size: calc(0.7em + 1.2vw);
     padding: 0 3vh;
     border: none;
     display: block;
+    color: white;
 }
 
 .dropdown-content input:hover {
-    background-color: rgb(134, 220, 132);
+    background-color: rgba(169,169,169, 0.5);
 }
 
 .dropdown:hover .dropdown-content {
@@ -163,11 +204,12 @@ button:focus {
 .pop-up_content,
 .task_pop-up_content {
     margin: auto;
+    background-color: rgba(169,174,175,1);
 }
 
 .close,
 .task_close {
-    color: #aaaaaa;
+    color: white;
     padding: 1% 2%;
     font-size: calc(0.4em + 2vw);
     font-weight: bold;
@@ -192,6 +234,7 @@ button:focus {
     flex-direction: column;
     justify-content: center;
     margin: 1%;
+    background-color: rgba(129,229,229,0.3)
 }
 
 .project_title {
@@ -222,9 +265,9 @@ button:focus {
 
 .task_container {
     display: flex;
-    border: 1px solid white;
     max-height: 4.15vh;
     flex-direction: row;
+    margin: 1px 0;
 }
 
 .task_title {
@@ -241,52 +284,23 @@ button:focus {
 
 .task_created_state {
     background-color: wheat;
+    border:1px solid white;
 }
 
 .task_started_state {
     background-color: rgb(134, 221, 243);
+    border:1px solid white;
 }
 
 .task_completed_state {
     background-color: rgb(202, 179, 245);
+    border:1px solid white;
 }
 
 .extra_info {
-    font-family: 'Reenie Beanie';
+    font-family: 'Fira Sans', sans-serif;
     font-size: calc(1em + 1.5vw);
     color: black;
-}
-
-.color-1 {
-    background-color: rgb(61, 199, 59);
-}
-
-.color-2 {
-    background-color: rgb(85, 206, 84);
-}
-
-.color-3 {
-    background-color: rgb(110, 213, 108);
-}
-
-.color-4 {
-    background-color: rgb(134, 220, 132);
-}
-
-.color-5 {
-    background-color: rgb(158, 227, 157);
-}
-
-.color-6 {
-    background-color: rgb(182, 234, 181);
-}
-
-.color-7 {
-    background-color: rgb(207, 241, 206);
-}
-
-.color-8 {
-    background-color: rgb(231, 248, 230);
 }
 
 .col-1-vw {

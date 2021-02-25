@@ -14,7 +14,7 @@
         <title>Register</title>
         <link rel="stylesheet" href="css/general.css">
     </head>
-    <body>
+    <body style="background-image: url('images/Body_Bg.jpg');background-size: auto">
         <%
             String usernamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.USERNAME_PH);
             String passwordPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PASSWORD_PH);
@@ -23,10 +23,10 @@
             String backButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.BACK_TO_LOGIN_BTN_VALUE);
             String currentLanguage = TranslationManager.getInstance().getTranslatedString(Constants.LANGUAGE_VALUE);
         %>
-        <header class="row_container col-12 row-1-vh center_h space_content color-2">
+        <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
-            <div class="dropdown col-1 row-1-vh" class="col_container center_wh color-2">
-                <button class="dropbtn col-12 row-12 color-2 header_font"><%=currentLanguage%></button>
+            <div class="dropdown col-1 row-1-vh" class="col_container center_wh">
+                <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                 <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
                     <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.LOGIN_JSP_PATH%>" style="display:none">
                     <%
@@ -36,14 +36,14 @@
                         for (int i = 0; i < languages.length; i++) {
                             language = languages[i];
                     %> 
-                    <input class="col-12 color-3" type="submit" name=<%=i%> value="<%=language%>">
+                    <input class="col-12" type="submit" name=<%=i%> value="<%=language%>">
                     <%}
                     %>
                 </form>
             </div>
         </header>
         <div class="row_container col-12 row-10-vh center_wh">
-            <div class="col_container col-3 row-9 center_wh color-3 rounded space_content">
+            <div class="col_container col-3 row-9 center_wh rounded space_content bg_color">
                 <img class="col-10" src="images/Register_Logo.png">
                 <form class="col_container col-7 row-9" action="${pageContext.request.contextPath}/Register" method="post">
                     <div class="col_container col-12 row-6 space_content">

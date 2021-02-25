@@ -17,7 +17,7 @@
         <title>Projects</title>
         <link rel="stylesheet" href="css/general.css">
     </head>
-    <body>
+    <body style="background-image: url('images/Body_Bg.jpg');background-size: auto">
         <%
             String projectNamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PROJECT_NAME_PH);
             String projectDescPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PROJECT_DESC_PH);
@@ -29,11 +29,11 @@
             String logOutButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.LOG_OUT_BTN_VALUE);
             String projectsOfValue = String.format(TranslationManager.getInstance().getTranslatedString(Constants.PROJECTS_OF_USER_VALUE), UserManager.getInstance().getLoggedUsername());
         %>
-        <header class="row_container col-12 row-1-vh center_h space_content color-2">
+        <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
             <div class="col-2 row-1-vh">
-                <div class="dropdown col-6 row-12" class="col_container center_wh color-2">
-                    <button class="dropbtn col-12 row-12 color-2 header_font"><%=currentLanguage%></button>
+                <div class="dropdown col-6 row-12" class="col_container center_wh">
+                    <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                     <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
                         <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.USER_PROJECTS_JSP_PATH%>" style="display:none">
                         <%
@@ -43,13 +43,13 @@
                             for (int i = 0; i < languages.length; i++) {
                                 language = languages[i];
                         %> 
-                        <input class="col-12 color-3" type="submit" name=<%=i%> value="<%=language%>">
+                        <input class="col-12" type="submit" name=<%=i%> value="<%=language%>">
                         <%}
                         %>
                     </form>
                 </div>
                 <form class="col-6 row-12" action="${pageContext.request.contextPath}/LogOut" method="post">
-                    <input class="col-12 row-12 color-2 header_font" type="submit" value="<%=logOutButtonValue%>">
+                    <input class="col-12 row-12 header_font" type="submit" value="<%=logOutButtonValue%>">
                 </form>
             </div>
         </header>
@@ -58,17 +58,17 @@
             <button id="show_pop-up" class="submit_input col-1 row-6 center_wh"><%=showCreateProjectButtonValue%></button>
         </div>
         <div id="pop-up" class="col_container col-12 row-12-vh center_wh">
-            <div class="pop-up_content col_container col-10 row-10 color-7 center_h rounded">
+            <div class="pop-up_content col_container col-10 row-10 center_h rounded">
                 <div class="row_container col-12 end_align">
                     <span class="close">&times;</span>
                 </div>
                 <form class="col_container col-8 row-8 center_wh space_content" action="${pageContext.request.contextPath}/UserProjects" method="post">
                     <div class="col_container col-12 row-4 center_wh space_content">
-                        <input class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_PROJECT_NAME%> placeholder="<%=projectNamePlaceholder%>" required>
-                        <input class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_PROJECT_DESC%> placeholder="<%=projectDescPlaceholder%>" required>
+                        <input class="pop-up_text_input col-12 row-3" type="text" name=<%=Constants.FORM_PROJECT_NAME%> placeholder="<%=projectNamePlaceholder%>" required>
+                        <input class="pop-up_text_input col-12 row-3" type="text" name=<%=Constants.FORM_PROJECT_DESC%> placeholder="<%=projectDescPlaceholder%>" required>
                     </div>
                     <div class="col_container col-12 row-5 center_wh">
-                        <input class="submit_input col-3 row-4 center_wh header_font" type="submit" value="<%=createProjectButtonValue%>">
+                        <input class="pop-up_submit_input col-3 row-4 center_wh header_font" type="submit" value="<%=createProjectButtonValue%>">
                     </div>
                 </form>
             </div>
@@ -79,7 +79,7 @@
                     Set<Project> projects = UserManager.getInstance().getLoggedUser().getProjects();
                     for (Project p : projects) {%>
 
-                <div class="project_container col-3 row-3 space_content rounded color-5">
+                <div class="project_container col-3 row-3 space_content rounded">
                     <div class="col_container col-12 row-7 center_wh space_content">
                         <p class="project_title col-11 row-6 center_wh"><%=p.getName()%></p>
                         <p class="project_desc col-11  row-6 center_wh"><%=p.getDesc()%></p>

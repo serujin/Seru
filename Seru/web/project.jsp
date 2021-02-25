@@ -20,7 +20,7 @@
         <title><%=ProjectManager.getInstance().getCurrentProject().getName()%></title>
         <link rel="stylesheet" href="css/general.css">
     </head>
-    <body>
+    <body style="background-image: url('images/Project_Bg.jpg'); background-size: auto;">
         <%
             String taskNamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.TASK_NAME_PH);
             String taskDescPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.TASK_DESC_PH);
@@ -32,11 +32,11 @@
             String backToProjectsButtonValue = TranslationManager.getInstance().getTranslatedString(Constants.BACK_TO_PROJECTS_BTN_VALUE);
             String tasksOfValue = String.format(TranslationManager.getInstance().getTranslatedString(Constants.TASKS_OF_PROJECT_VALUE), ProjectManager.getInstance().getCurrentProject().getName());
         %>
-        <header class="row_container col-12 row-1-vh center_h space_content color-2">
+        <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
             <div class="col-2 row-1-vh">
-                <div class="dropdown col-6 row-12" class="col_container center_wh color-2">
-                    <button class="dropbtn col-12 row-12 color-2 header_font"><%=currentLanguage%></button>
+                <div class="dropdown col-6 row-12" class="col_container center_wh">
+                    <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                     <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
                         <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.PROJECT_JSP_PATH%>" style="display:none">
                         <%
@@ -46,52 +46,52 @@
                             for (int i = 0; i < languages.length; i++) {
                                 language = languages[i];
                         %> 
-                        <input class="col-12 color-3" type="submit" name=<%=i%> value="<%=language%>">
+                        <input class="col-12" type="submit" name=<%=i%> value="<%=language%>">
                         <%}
                         %>
                     </form>
                 </div>
                 <form class="col-6 row-12" action="${pageContext.request.contextPath}/LogOut" method="post">
-                    <input class="col-12 row-12 color-2 header_font" type="submit" value="<%=logOutButtonValue%>">
+                    <input class="col-12 row-12 header_font" type="submit" value="<%=logOutButtonValue%>">
                 </form>
             </div>
         </header>
         <div class="row_container col-12 row-1-vh center_wh">
-            <p class="extra_info col-9 row-6 center_wh"><%=tasksOfValue%></p>
-            <button id="show_pop-up" class="submit_input col-1 row-6 center_wh"><%=showCreateTaskButtonValue%></button>
-            <button class="submit_input col-1 row-6 center_wh" onClick="location.href = '<%=Constants.USER_PROJECTS_JSP_PATH%>'"><%=backToProjectsButtonValue%></button>
+            <p style="color:white;" class="extra_info col-9 row-6 center_wh"><%=tasksOfValue%></p>
+            <button style="background-color: rgba(169,169,169, 0.5); color:white;" id="show_pop-up" class="submit_input col-1 row-6 center_wh"><%=showCreateTaskButtonValue%></button>
+            <button style="background-color: rgba(169,169,169, 0.5); color:white;" class="submit_input col-1 row-6 center_wh" onClick="location.href = '<%=Constants.USER_PROJECTS_JSP_PATH%>'"><%=backToProjectsButtonValue%></button>
         </div>
         <div id="pop-up" class="col_container col-12 row-12-vh center_wh">
-            <div class="pop-up_content col_container col-10 row-10 color-7 center_h rounded">
+            <div class="pop-up_content col_container col-10 row-10 center_h rounded">
                 <div class="row_container col-12 end_align">
                     <span class="close">&times;</span>
                 </div>
                 <form class="col_container col-8 row-8 center_wh space_content" action="${pageContext.request.contextPath}/Project" method="get">
                     <div class="col_container col-12 row-4 center_wh space_content">
-                        <input class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_NAME%> placeholder="<%=taskNamePlaceholder%>" required>
-                        <input class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_DESC%> placeholder="<%=taskDescPlaceholder%>" required>
+                        <input class="pop-up_text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_NAME%> placeholder="<%=taskNamePlaceholder%>" required>
+                        <input class="pop-up_text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_DESC%> placeholder="<%=taskDescPlaceholder%>" required>
                     </div>
                     <div class="col_container col-12 row-5 center_wh">
-                        <input class="submit_input col-3 row-4 center_wh header_font" type="submit" value="<%=createTaskButtonValue%>">
+                        <input class="pop-up_submit_input col-3 row-4 center_wh header_font" type="submit" value="<%=createTaskButtonValue%>">
                     </div>
                 </form>
             </div>
         </div>
         <div id="task_pop-up" class="col_container col-12 row-12-vh center_wh">
-            <div class="task_pop-up_content col_container col-10 row-10 color-7 center_h rounded">
+            <div class="task_pop-up_content col_container col-10 row-10 center_h rounded" style="background-color: rgba(169,169,169, 0.9);">
                 <div class="row_container col-12 end_align">
                     <span class="task_close">&times;</span>
                 </div>
                 <form class="col_container col-8 row-8 center_wh space_content" action="${pageContext.request.contextPath}/Task" method="post">
                     <input id="task_pop-up_id" type="text" name=<%=Constants.FORM_TASK_ID%> style="display:none;">
                     <div class="col_container col-12 row-4 center_wh space_content">
-                        <input id="task_pop-up_name"  class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_NAME%> readonly>
-                        <input id="task_pop-up_desc"  class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_DESC%> readonly>  
+                        <input id="task_pop-up_name"  class="pop-up_text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_NAME%> readonly>
+                        <input id="task_pop-up_desc"  class="pop-up_text_input col-12 row-3" type="text" name=<%=Constants.FORM_TASK_DESC%> readonly>  
                     </div>
                     <input id="task_pop-up_state" type="text" name=<%=Constants.FORM_TASK_STATE%> style="display:none;">
                     <div class="row_container col-12 row-5 center_wh">
                         <input id="task_pop-up_submit" class="submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_CHANGE%>>
-                        <input  class="submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_DELETE%> value="<%=deleteTaskButtonValue%>">
+                        <input  class="pop-up_submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_DELETE%> value="<%=deleteTaskButtonValue%>">
                     </div>
                 </form>
             </div>
@@ -117,7 +117,7 @@
             }
         %>
         <main class="row_container col-11 row-10-vh center_wh space_content">
-            <div class="col_container col-3 row-11 color-1 rounded">
+            <div class="col_container col-3 row-11 rounded">
                 <p class="header_font col-12 row-1 center_w"><%=createdTasksTitle%></p>
                 <div class="tasks_container col-12 center_w">
                     <%
@@ -132,7 +132,7 @@
                             desc = t.getDesc();
                     %>
                     <div class="task_container col-10 center_h">
-                        <button class="task_title col-10 row-12 color-6" onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
+                        <button style="color:white; background: none" class="task_title col-10 row-12" onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
                             <%=t.getName()%>
                         </button>
                         <div class="task_created_state col-2 row-12"></div>
@@ -141,7 +141,7 @@
                     %>
                 </div>
             </div>
-            <div class="col_container col-3 row-11 color-2 rounded">
+            <div class="col_container col-3 row-11 rounded">
                 <p class="header_font col-12 row-1 center_w"><%=startedTasksTitle%></p>
                 <div class="tasks_container col-12 center_w">
                     <%
@@ -153,7 +153,7 @@
                             desc = t.getDesc();
                     %>
                     <div class="task_container col-10 center_h">
-                        <button class="task_title col-10 row-12 color-6" onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
+                        <button style="color:white; background: none" class="task_title col-10 row-12" onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
                             <%=t.getName()%>
                         </button>
                         <div class="task_started_state col-2 row-12"></div>
@@ -162,13 +162,13 @@
                     %>
                 </div>
             </div>
-            <div class="col_container col-3 row-11 color-3 rounded">
+            <div class="col_container col-3 row-11 rounded">
                 <p class="header_font col-12 row-1 center_w"><%=completedTasksTitle%></p>
                 <div class="tasks_container col-12 center_w">
                     <%
                         for (Task t : completed) {%>
                     <div class="task_container col-10 center_h">
-                        <button class="task_title col-10 row-12 color-6">
+                        <button style="color:white; background: none" class="task_title col-10 row-12">
                             <%=t.getName()%>
                         </button>
                         <div class="task_completed_state col-2 row-12"></div>
