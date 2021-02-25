@@ -34,7 +34,7 @@
         %>
         <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
-            <div class="col-2 row-1-vh">
+            <div class="col-3 row-1-vh">
                 <div class="dropdown col-6 row-12" class="col_container center_wh">
                     <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                     <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
@@ -90,8 +90,8 @@
                     </div>
                     <input id="task_pop-up_state" type="text" name=<%=Constants.FORM_TASK_STATE%> style="display:none;">
                     <div class="row_container col-12 row-5 center_wh">
-                        <input id="task_pop-up_submit" class="submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_CHANGE%>>
-                        <input  class="pop-up_submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_DELETE%> value="<%=deleteTaskButtonValue%>">
+                        <input id="task_pop-up_submit" class="pop-up_submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_CHANGE%>>
+                        <input class="pop-up_submit_input col-4 row-4 center_wh header_font" type="submit" name=<%=Constants.FORM_SUBMIT_DELETE%> value="<%=deleteTaskButtonValue%>">
                     </div>
                 </form>
             </div>
@@ -132,7 +132,7 @@
                             desc = t.getDesc();
                     %>
                     <div class="task_container col-10 center_h">
-                        <button style="color:white; background: none" class="task_title col-10 row-12" onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
+                        <button style="color:white; background: none" class="task_title col-10 row-12 center_h" onclick="openPopUp('<%=id%>', '<%=name%>', '<%=desc%>', '<%=state%>', '<%=btnText%>')">
                             <%=t.getName()%>
                         </button>
                         <div class="task_created_state col-2 row-12"></div>

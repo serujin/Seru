@@ -14,7 +14,7 @@
         <title>Register</title>
         <link rel="stylesheet" href="css/general.css">
     </head>
-    <body style="background-image: url('images/Body_Bg.jpg');background-size: auto">
+    <body style="background-image: url('images/Body_Bg.jpg');background-size: cover">
         <%
             String usernamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.USERNAME_PH);
             String passwordPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PASSWORD_PH);
@@ -25,10 +25,10 @@
         %>
         <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
-            <div class="dropdown col-1 row-1-vh" class="col_container center_wh">
+            <div class="dropdown col-2 row-1-vh" class="col_container center_wh">
                 <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                 <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
-                    <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.LOGIN_JSP_PATH%>" style="display:none">
+                    <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.REGISTER_JSP_PATH%>" style="display:none">
                     <%
                         String[] languages = TranslationManager.getInstance().getAvaliableLanguages();
 
@@ -44,7 +44,8 @@
         </header>
         <div class="row_container col-12 row-10-vh center_wh">
             <div class="col_container col-3 row-9 center_wh rounded space_content bg_color">
-                <img class="col-10" src="images/Register_Logo.png">
+                <% String imgPath = "images/Register_Logo_" + TranslationManager.getInstance().getTranslatedString(Constants.REGISTER_IMG_PAHT) + ".png";%>
+                <img class="col-10" src="<%=imgPath%>">
                 <form class="col_container col-7 row-9" action="${pageContext.request.contextPath}/Register" method="post">
                     <div class="col_container col-12 row-6 space_content">
                         <input class="text_input col-12 row-3" type="text" name=<%=Constants.FORM_USERNAME_NAME%> placeholder="<%=usernamePlaceholder%>" required >
@@ -58,5 +59,18 @@
                 </form>
             </div>
         </div>
+        <script>
+            window.onload = function() {
+                let incorrect = "<%=Constants.INCORRECT_REGISTER_ATTRIBUTE%>";
+                let password = "<%=Constants.INCORRECT_PASSWORD_ATTRIBUTE%>";
+                let value = "<%=request.getAttribute(Constants.INCORRECT_REGISTER_ATTRIBUTE)%>";
+                if(incorrect==value) {
+                    alert("<%=TranslationManager.getInstance().getTranslatedString(Constants.INVALID_USERNAME_ALERT)%>")
+                }
+                if(password==value) {
+                    alert("<%=TranslationManager.getInstance().getTranslatedString(Constants.INVALID_REGISTER_ALERT)%>")
+                }
+            }
+        </script>
     </body>
 </html>

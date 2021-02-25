@@ -122,7 +122,7 @@ button:focus {
 }
 
 .bg_color {
-    background-color: rgba(180, 226, 230, 1);
+    background-color: rgba(200, 180, 230, 1);
 }
 
 .rounded {
@@ -215,6 +215,8 @@ button:focus {
     font-weight: bold;
 }
 
+.task_close:hover,
+.task_close:focus,
 .close:hover,
 .close:focus {
     color: #000;
@@ -234,7 +236,7 @@ button:focus {
     flex-direction: column;
     justify-content: center;
     margin: 1%;
-    background-color: rgba(129,229,229,0.3)
+    background-color: rgba(129,229,229,0.7)
 }
 
 .project_title {
@@ -267,7 +269,7 @@ button:focus {
     display: flex;
     max-height: 4.15vh;
     flex-direction: row;
-    margin: 1px 0;
+    margin: 2px 0;
 }
 
 .task_title {

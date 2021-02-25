@@ -81,7 +81,10 @@ public class Constants {
         "Completed tasks",
         "Back to my projects",
         "%s's Projects",
-        "%s's Tasks"
+        "%s's Tasks",
+        "Invalid login",
+        "EN",
+        "The passwords must be equal"
     };
     public static final String[] ES = {
         "Introduce tu nombre",
@@ -112,7 +115,10 @@ public class Constants {
         "Tareas completadas",
         "Volver a mis proyectos",
         "Proyectos de %s",
-        "Tareas de %s"
+        "Tareas de %s",
+        "Login incorrecto",
+        "ES",
+        "Las contraseñas no coinciden"
     };
     // </editor-fold>
     public static final String[][] LANGUAGES = {
@@ -127,6 +133,10 @@ public class Constants {
     public static final String PROJECT_JSP_PATH = "project.jsp";
     public static final String REGISTER_JSP_PATH = "register.jsp";
     public static final String USER_PROJECTS_JSP_PATH = "user_projects.jsp";
+    
+    public static final String INCORRECT_LOGIN_ATTRIBUTE = "incorrect";
+    public static final String INCORRECT_REGISTER_ATTRIBUTE = Constants.INCORRECT_LOGIN_ATTRIBUTE;
+    public static final String INCORRECT_PASSWORD_ATTRIBUTE = "password_error";
     
     public static final int USERNAME_PH = 0;
     public static final int PASSWORD_PH = 1;
@@ -157,4 +167,7 @@ public class Constants {
     public static final int BACK_TO_PROJECTS_BTN_VALUE = 26;
     public static final int PROJECTS_OF_USER_VALUE = 27;
     public static final int TASKS_OF_PROJECT_VALUE = 28;
+    public static final int INVALID_LOGIN = 29;
+    public static final int REGISTER_IMG_PAHT = 30;
+    public static final int INVALID_REGISTER_ALERT = 31;
 }

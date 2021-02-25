@@ -23,7 +23,6 @@ public class Translator extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
         String requestedFrom = req.getParameter(Constants.FORM_CURRENT_PAGE_VALUE);
         changeLanguage(req);
         resp.sendRedirect(requestedFrom);

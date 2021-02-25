@@ -20,7 +20,6 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
         String username = req.getParameter(Constants.FORM_USERNAME_NAME);
         String password = req.getParameter(Constants.FORM_PASSWORD_NAME);
         String confirmPassword = req.getParameter(Constants.FORM_CONFIRM_PASSWORD_NAME);
@@ -29,15 +28,15 @@ public class Register extends HttpServlet {
                 if(UserManager.getInstance().register(username, password)) {
                     resp.sendRedirect(Constants.LOGIN_JSP_PATH); 
                 } else {
-                    System.out.println(TranslationManager.getInstance().getTranslatedString(Constants.INVALID_USERNAME_ALERT));
-                    resp.sendRedirect(Constants.REGISTER_JSP_PATH); 
+                    req.setAttribute(Constants.INCORRECT_REGISTER_ATTRIBUTE, Constants.INCORRECT_REGISTER_ATTRIBUTE);
+                    req.getRequestDispatcher(Constants.REGISTER_JSP_PATH).forward(req, resp);
                 }
             } catch (NoSuchAlgorithmException ex) {
                 System.out.println(ex.getMessage());
             }
         } else {
-            System.out.println(TranslationManager.getInstance().getTranslatedString(Constants.NOT_EQUAL_PASSWORD_ALERT));
-            resp.sendRedirect(Constants.LOGIN_JSP_PATH);
+            req.setAttribute(Constants.INCORRECT_REGISTER_ATTRIBUTE, Constants.INCORRECT_PASSWORD_ATTRIBUTE);
+            req.getRequestDispatcher(Constants.REGISTER_JSP_PATH).forward(req, resp);
         }
     }
     

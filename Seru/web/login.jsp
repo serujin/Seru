@@ -14,7 +14,7 @@
         <title>Login</title>
         <link rel="stylesheet" href="css/general.css">
     </head>
-    <body style="background-image: url('images/Body_Bg.jpg'); background-size: auto;">
+    <body style="background-image: url('images/Body_Bg.jpg'); background-size: cover;">
         <%
             String usernamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.USERNAME_PH);
             String passwordPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PASSWORD_PH);
@@ -24,7 +24,7 @@
         %>
         <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
-            <div class="dropdown col-1 row-1-vh" class="col_container center_wh">
+            <div class="dropdown col-2 row-1-vh" class="col_container center_wh">
                 <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                 <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
                     <input type="text" name=<%=Constants.FORM_CURRENT_PAGE_VALUE%> value="<%=Constants.LOGIN_JSP_PATH%>" style="display:none">
@@ -56,5 +56,14 @@
                 </form>
             </div>
         </div>
+        <script>
+            window.onload = function() {
+                let incorrect = "<%=Constants.INCORRECT_LOGIN_ATTRIBUTE%>";
+                let value = "<%=request.getAttribute(Constants.INCORRECT_LOGIN_ATTRIBUTE)%>";
+                if(incorrect==value) {
+                    alert("<%=TranslationManager.getInstance().getTranslatedString(Constants.INVALID_LOGIN)%>")
+                }
+            }
+        </script>
     </body>
 </html>

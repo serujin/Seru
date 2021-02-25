@@ -23,14 +23,14 @@ import manager.UserManager;
 public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
         try {
             String username = req.getParameter(Constants.FORM_USERNAME_NAME);
             String password = req.getParameter(Constants.FORM_PASSWORD_NAME);
             if(UserManager.getInstance().login(username, password)) {
                 resp.sendRedirect(Constants.USER_PROJECTS_JSP_PATH);
             } else {
-                resp.sendRedirect(Constants.LOGIN_JSP_PATH);
+                req.setAttribute(Constants.INCORRECT_LOGIN_ATTRIBUTE, Constants.INCORRECT_LOGIN_ATTRIBUTE);
+                req.getRequestDispatcher(Constants.LOGIN_JSP_PATH).forward(req, resp);
             }
         } catch (NoSuchAlgorithmException ex) {
             System.out.println(ex.getMessage());

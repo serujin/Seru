@@ -20,7 +20,6 @@ public class Project extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(req.getParameter(Constants.FORM_PROJECT_ID));
         String type = req.getParameter(Constants.FORM_SUBMIT_CHANGE);
         ProjectManager.getInstance().loadProject(id);
@@ -39,7 +38,6 @@ public class Project extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
         String taskName = req.getParameter(Constants.FORM_TASK_NAME);
         String taskDesc = req.getParameter(Constants.FORM_TASK_DESC);
         TaskManager.getInstance().createTask(taskName, taskDesc);

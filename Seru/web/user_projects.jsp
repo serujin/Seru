@@ -17,7 +17,7 @@
         <title>Projects</title>
         <link rel="stylesheet" href="css/general.css">
     </head>
-    <body style="background-image: url('images/Body_Bg.jpg');background-size: auto">
+    <body style="background-image: url('images/Body_Bg.jpg');background-size: cover;">
         <%
             String projectNamePlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PROJECT_NAME_PH);
             String projectDescPlaceholder = TranslationManager.getInstance().getTranslatedString(Constants.PROJECT_DESC_PH);
@@ -31,7 +31,7 @@
         %>
         <header class="row_container col-12 row-1-vh center_h space_content">
             <img class="col-1" src="images/Seru_Logo.png">
-            <div class="col-2 row-1-vh">
+            <div class="col-3 row-1-vh">
                 <div class="dropdown col-6 row-12" class="col_container center_wh">
                     <button class="dropbtn col-12 row-12 header_font"><%=currentLanguage%></button>
                     <form class="dropdown-content col-12" action="${pageContext.request.contextPath}/Translator" method="post">
